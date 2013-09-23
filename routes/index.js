@@ -32,7 +32,8 @@ exports.styleguide = function (req, res) {
 };
 
 exports.login = function (req, res) {
-    res.render('login', { page: 'login' });
+    var randomImage = Math.floor(Math.random() * 6) + 1;
+    res.render('login', { page: 'login', imageName: randomImage.toString() });
 };
 
 exports.logout = function (req, res) {
