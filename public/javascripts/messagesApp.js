@@ -1,7 +1,6 @@
 angular.module('messagesApp', []);
 
 function MessagesController($scope, $http) {
-  $scope.title = "hello";
   $scope.messages = [];
   $scope.refresh = function(){
     $http({method: 'GET', url: '/api/messages'}).

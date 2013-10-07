@@ -7,21 +7,33 @@
         <script src="/javascripts/vendor/bootstrap/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script>
         <script src="/javascripts/messagesApp.js"></script>
+      <style>
+        
+        #bannerImage{
+          position:fixed;
+          width: 50%;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          background-image:url('images/banners/building_interface.jpg');
+          background-repeat:no-repeat;
+          background-size:cover;
+        }
+        
+      </style>
         <link rel="stylesheet" href="/stylesheets/vendor/bootstrap/css/bootstrap.min.css" />
     </head>
     <body>
+        <div id="bannerImage">
+      </div>
         <div class="container" ng-controller="MessagesController">
           <div class="row">
             <p>&nbsp;</p>
           </div>
             <div class="row">
                 <div class="col-md-6">
-                  <div class="well well-primary">
+                  <a href="/">home</a>
                     <h1>Messages</h1>
-                    <p>We all need somewhere to wrote some code just for the hell of it, no reason, just because.
-                      This is mine.</p>
-                    <p>{{title}}</p>
-                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="panel panel-primary">
