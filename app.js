@@ -25,6 +25,7 @@ var express = require('express')
   , engine = require('ejs-locals')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , messages = require('./routes/messages')
   , shoppingRoutes = require('./routes/shopping')
   , api = require('./routes/api')
   , http = require('http')
@@ -97,6 +98,8 @@ app.get('/app', ensureAuthenticated, routes.app);
 app.get('/user', ensureAuthenticated, routes.user);
 app.post('/user', ensureAuthenticated, routes.userPost);
 app.get('/about', ensureAuthenticated, routes.about);
+
+app.get('/messages', ensureAuthenticated, messages.index);
 
 app.get('/shopping', ensureAuthenticated, shoppingRoutes.need);
 app.get('/shopping/add', ensureAuthenticated, shoppingRoutes.add);
