@@ -100,6 +100,7 @@ app.post('/user', ensureAuthenticated, routes.userPost);
 app.get('/about', ensureAuthenticated, routes.about);
 
 app.get('/messages', ensureAuthenticated, messages.index);
+app.get('/api/messages', ensureAuthenticated, messages.messages);
 
 app.get('/shopping', ensureAuthenticated, shoppingRoutes.need);
 app.get('/shopping/add', ensureAuthenticated, shoppingRoutes.add);

@@ -12,3 +12,10 @@ exports.index = function (req, res) {
 };
 
 /* API */
+
+exports.messages = function(req, res){
+  res.send([
+    {"name": "Greg", "text":"Hello", "created": "2013 Oct 8 2:00 pm" }, 
+    {"name": "Anonymous", "text": "Sample Data", "created": "2013 Oct 7 9:31 am" } 
+  ]);
+};

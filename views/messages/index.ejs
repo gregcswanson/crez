@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="messagesApp">
     <head>
         <title>Messages</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <script src="/javascripts/vendor/jquery/jquery.js"></script>
         <script src="/javascripts/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.2/angular.min.js"></script>
+        <script src="/javascripts/messagesApp.js"></script>
         <link rel="stylesheet" href="/stylesheets/vendor/bootstrap/css/bootstrap.min.css" />
     </head>
     <body>
-        <div class="container">
+        <div class="container" ng-controller="MessagesController">
           <div class="row">
             <p>&nbsp;</p>
           </div>
             <div class="row">
                 <div class="col-md-6">
-                  <div class="well">
+                  <div class="well well-primary">
                     <h1>Messages</h1>
                     <p>We all need somewhere to wrote some code just for the hell of it, no reason, just because.
                       This is mine.</p>
+                    <p>{{title}}</p>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -34,14 +37,19 @@
                       </div>
                     </div>
                   </div>
+                  
+                  <div class="row">
+                    <div class="col-md-12">
+                      <blockquote ng-repeat="message in messages">
+                        <p>{{message.text}}</p>
+                        <small>{{message.name}} <cite title="Source Title">{{message.created}}</cite></small>
+                      </blockquote>
+                    </div>
+                  </div>                  
                 </div>
             </div>
                   
-          <div class="row">
-                        <div class="col-md-12">
-                          <p>content</p>
-                        </div>
-                      </div>
+          
         </div>
     </body>
 </html>
