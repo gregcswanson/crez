@@ -101,6 +101,8 @@ app.get('/about', ensureAuthenticated, routes.about);
 
 app.get('/messages', ensureAuthenticated, messages.index);
 app.get('/api/messages', ensureAuthenticated, messages.messages);
+app.post('/api/messages', ensureAuthenticated, messages.messagesPost);
+app.delete('/api/messages', ensureAuthenticated, messages.messagesDelete);
 
 app.get('/shopping', ensureAuthenticated, shoppingRoutes.need);
 app.get('/shopping/add', ensureAuthenticated, shoppingRoutes.add);

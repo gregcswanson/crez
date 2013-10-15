@@ -54,14 +54,31 @@ exports.FindByID = function (id, callback) {
     });
 };
 
+exports.All = function(callback) {
+  var query = azure.TableQuery
+        .select()
+        .from('messages')
+        .where('PartitionKey eq ?', 'all');
+    tableService.queryEntities(query, function (error, entities) {
+        if (error) {
+            callback(error, null);
+        } else {
+            console.log(entities);
+            callback(null, entities);
+        }
+    });
+};
+
 exports.Add = function (item, callback) {
+  console.log('Add');
     var message = {
         PartitionKey: 'all'
-        , RowKey: item.id
+        , RowKey: uuid()
         , name: item.name
         , text: item.text
         , created: new Date()
     };
+  console.log(message);
     tableService.insertEntity('messages', message, function (error) {
         if (error) {
             console.log(error);
@@ -90,5 +107,17 @@ exports.Update = function (item, callback) {
         }
         if (error) return callback(error, null);
         callback(null, message);
+    });
+};
+
+exports.Delete = function(item, callback){
+  tableService.deleteEntity('messages'
+    , {
+        PartitionKey : 'all'
+        , RowKey : item.id
+    }
+    , function(error){
+        if (error) return callback(error, null);
+        callback(null, item);
     });
 };

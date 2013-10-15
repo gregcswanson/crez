@@ -14,8 +14,30 @@ exports.index = function (req, res) {
 /* API */
 
 exports.messages = function(req, res){
-  res.send([
+  repositoryMessages.All(function(err, items){
+      res.send(items);
+  });
+  /*res.send([
     {"name": "Greg", "text":"Hello", "created": "2013 Oct 8 2:00 pm" }, 
     {"name": "Anonymous", "text": "Sample Data", "created": "2013 Oct 7 9:31 am" } 
-  ]);
+  ]);*/
+};
+
+exports.messagesPost = function (req, res) {
+    var name = req.user.email;
+    repositoryMessages.Add({'text': req.body.text, 'name': name, 'created': new Date()}, function(err, item){
+        res.send(item);
+    });
+};
+
+exports.messagesDelete = function(req, res) {
+  repositoryMessages.FindByID(req.body.id, function(err, message){
+    if (err){
+      res.send(err);
+    } else {
+      repositoryMessages.Delete(message, function(err, item){
+        res.send(item);
+      });
+    }
+  });
 };
