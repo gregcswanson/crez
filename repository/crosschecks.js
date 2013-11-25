@@ -16,12 +16,12 @@ https://www.windowsazure.com/en-us/develop/nodejs/how-to-guides/table-services
 https://github.com/WindowsAzure/azure-sdk-for-node
 */
 
-tableService.createTableIfNotExists('messages', function (error) {
+tableService.createTableIfNotExists('crosschecks', function (error) {
     if (error) {
         // Tablea exists or created
         console.log(error);
     } else {
-        console.log('Azure table messages ready');
+        console.log('Azure table crosschecks ready');
     }
 });
 
@@ -39,7 +39,7 @@ exports.FindOrCreate = function (item, callback) {
 };
 
 exports.FindByID = function (id, callback) {
-    tableService.queryEntity('messages', 'all', id, function (error, message) {
+    tableService.queryEntity('crosschecks', 'all', id, function (error, message) {
         if (error) {
             callback(error, null);
         } else {
@@ -57,7 +57,7 @@ exports.FindByID = function (id, callback) {
 exports.All = function(callback) {
   var query = azure.TableQuery
         .select()
-        .from('messages')
+        .from('crosschecks')
         .where('PartitionKey eq ?', 'all');
     tableService.queryEntities(query, function (error, entities) {
         if (error) {
@@ -79,11 +79,11 @@ exports.Add = function (item, callback) {
         , created: new Date()
     };
   console.log(message);
-    tableService.insertEntity('messages', message, function (error) {
+    tableService.insertEntity('crosschecks', message, function (error) {
         if (error) {
             console.log(error);
         } else {
-            console.log('Table storage message added: ' + message.RowKey);
+            console.log('Table storage crosschecks added: ' + message.RowKey);
             item.created = message.created;
         }
         if (error) return callback(error, null);
@@ -99,11 +99,11 @@ exports.Update = function (item, callback) {
         , text: item.text
         , created: new Date()
     };
-    tableService.mergeEntity('messages', message, function (error) {
+    tableService.mergeEntity('crosschecks', message, function (error) {
         if (error) {
             console.log(error);
         } else {
-            console.log('Table storage message updated: ' + message.RowKey);
+            console.log('Table storage crosschecks updated: ' + message.RowKey);
         }
         if (error) return callback(error, null);
         callback(null, message);
@@ -111,7 +111,7 @@ exports.Update = function (item, callback) {
 };
 
 exports.Delete = function(item, callback){
-  tableService.deleteEntity('messages'
+  tableService.deleteEntity('crosschecks'
     , {
         PartitionKey : 'all'
         , RowKey : item.id

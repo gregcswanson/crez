@@ -16,38 +16,24 @@ https://www.windowsazure.com/en-us/develop/nodejs/how-to-guides/table-services
 https://github.com/WindowsAzure/azure-sdk-for-node
 */
 
-tableService.createTableIfNotExists('messages', function (error) {
+tableService.createTableIfNotExists('organisations', function (error) {
     if (error) {
-        // Tablea exists or created
+        // Table not exists or created
         console.log(error);
     } else {
-        console.log('Azure table messages ready');
+        console.log('Azure table organisations ready');
     }
 });
 
-exports.FindOrCreate = function (item, callback) {
-    var self = this;
-    this.FindByID(item.id, function (error, message) {
-        if (error) {
-            self.Add(item, function (error, message) {
-                callback(error, message);
-            });
-        } else {
-            callback(null, message)
-        }
-    });
-};
-
 exports.FindByID = function (id, callback) {
-    tableService.queryEntity('messages', 'all', id, function (error, message) {
+    tableService.queryEntity('organisations', 'all', id, function (error, foundItem) {
         if (error) {
             callback(error, null);
         } else {
             var item = {
                 id: id
-                , name: message.name
-                , text: message.text
-                , created: message.created
+                , name: foundItem.name
+                , created: foundItem.created
             };
             callback(null, item);
         }
@@ -57,7 +43,7 @@ exports.FindByID = function (id, callback) {
 exports.All = function(callback) {
   var query = azure.TableQuery
         .select()
-        .from('messages')
+        .from('organisations')
         .where('PartitionKey eq ?', 'all');
     tableService.queryEntities(query, function (error, entities) {
         if (error) {
@@ -71,20 +57,19 @@ exports.All = function(callback) {
 
 exports.Add = function (item, callback) {
   console.log('Add');
-    var message = {
+    var newItem = {
         PartitionKey: 'all'
         , RowKey: uuid()
         , name: item.name
-        , text: item.text
         , created: new Date()
     };
   console.log(message);
-    tableService.insertEntity('messages', message, function (error) {
+    tableService.insertEntity('organisations', newItem, function (error) {
         if (error) {
             console.log(error);
         } else {
-            console.log('Table storage message added: ' + message.RowKey);
-            item.created = message.created;
+            console.log('Table storage organisations added: ' + newItem.RowKey);
+            item.created = newItem.created;
         }
         if (error) return callback(error, null);
         callback(null, item);
@@ -92,26 +77,25 @@ exports.Add = function (item, callback) {
 };
 
 exports.Update = function (item, callback) {
-    var message = {
+    var updateItem = {
         PartitionKey: 'all'
         , RowKey: item.id
         , name: item.name
-        , text: item.text
         , created: new Date()
     };
-    tableService.mergeEntity('messages', message, function (error) {
+    tableService.mergeEntity('organisations', updateItem, function (error) {
         if (error) {
             console.log(error);
         } else {
-            console.log('Table storage message updated: ' + message.RowKey);
+            console.log('Table storage organisations updated: ' + updateItem.RowKey);
         }
         if (error) return callback(error, null);
-        callback(null, message);
+        callback(null, updateItem);
     });
 };
 
 exports.Delete = function(item, callback){
-  tableService.deleteEntity('messages'
+  tableService.deleteEntity('organisations'
     , {
         PartitionKey : 'all'
         , RowKey : item.id

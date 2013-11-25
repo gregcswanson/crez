@@ -26,6 +26,7 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , messages = require('./routes/messages')
+  , bigboatproject = require('./routes/bigboatproject')
   , shoppingRoutes = require('./routes/shopping')
   , api = require('./routes/api')
   , http = require('http')
@@ -103,6 +104,8 @@ app.get('/messages', ensureAuthenticated, messages.index);
 app.get('/api/messages', ensureAuthenticated, messages.messages);
 app.post('/api/messages', ensureAuthenticated, messages.messagesPost);
 app.delete('/api/messages', ensureAuthenticated, messages.messagesDelete);
+
+app.get('/bigboatproject', bigboatproject.index);
 
 app.get('/shopping', ensureAuthenticated, shoppingRoutes.need);
 app.get('/shopping/add', ensureAuthenticated, shoppingRoutes.add);
