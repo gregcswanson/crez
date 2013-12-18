@@ -36,6 +36,11 @@ exports.login = function (req, res) {
     res.render('login', { page: 'login', imageName: randomImage.toString() });
 };
 
+exports.loginAlt = function (req, res) {
+    var randomImage = Math.floor(Math.random() * 6) + 1;
+    res.render('login-alt', { page: 'login', imageName: randomImage.toString() });
+};
+
 exports.logout = function (req, res) {
     req.logout();
     res.redirect('/');

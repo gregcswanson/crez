@@ -27,18 +27,18 @@ tableService.createTableIfNotExists('crosschecks', function (error) {
 
 exports.FindOrCreate = function (item, callback) {
     var self = this;
-    this.FindByID(item.id, function (error, message) {
+    this.FindByID(item.id, function (error, foundItem) {
         if (error) {
-            self.Add(item, function (error, message) {
-                callback(error, message);
+            self.Add(item, function (error, foundItem) {
+                callback(error, foundItem);
             });
         } else {
-            callback(null, message)
+            callback(null, foundItem);
         }
     });
 };
 
-exports.FindByID = function (id, callback) {
+exports.FindForUserByID = function (id, callback) {
     tableService.queryEntity('crosschecks', 'all', id, function (error, message) {
         if (error) {
             callback(error, null);
@@ -47,6 +47,7 @@ exports.FindByID = function (id, callback) {
                 id: id
                 , name: message.name
                 , text: message.text
+                ,
                 , created: message.created
             };
             callback(null, item);

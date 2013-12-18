@@ -1,0 +1,121 @@
+{
+    "type": "user",
+    "editor": {
+        "lineNumbers": true,
+        "glyphMargin": false,
+        "tabSize": "auto",
+        "insertSpaces": "auto",
+        "roundedSelection": true,
+        "scrollBeyondLastLine": true,
+        "wrappingColumn": 300,
+        "quickSuggestions": true,
+        "quickSuggestionsDelay": 500,
+        "autoClosingBrackets": true,
+        "formatOnType": false,
+        "suggestOnTriggerCharacters": true,
+        "overviewRulerLanes": 3,
+        "hideCursorInOverviewRuler": false
+    },
+    "console": {
+        "lineNumbers": false,
+        "roundedSelection": true,
+        "wrappingColumn": 0,
+        "quickSuggestionsDelay": 50,
+        "scrollBeyondLastLine": true,
+        "hideCursorInOverviewRuler": true
+    },
+    "languages": {
+        "vs.languages.css": {
+            "box-model": "ignore",
+            "compatible-vendor-prefixes": "warning",
+            "display-property-grouping": "warning",
+            "duplicate-background-images": "ignore",
+            "duplicate-properties": "warning",
+            "empty-rules": "warning",
+            "gradients": "warning",
+            "ids": "ignore",
+            "important": "ignore",
+            "known-properties": "ignore",
+            "outline-none": "warning",
+            "overqualified-elements": "ignore",
+            "qualified-headings": "ignore",
+            "regex-selectors": "ignore",
+            "shorthand": "ignore",
+            "text-indent": "ignore",
+            "unique-headings": "ignore",
+            "universal-selector": "ignore",
+            "unqualified-attributes": "ignore",
+            "vendor-prefix": "warning",
+            "zero-units": "warning"
+        },
+        "vs.languages.javascript": {
+            "suggestSettings": {
+                "alwaysAllWords": false,
+                "useCodeSnippetsOnMethodSuggest": false
+            },
+            "validationSettings": {
+                "codeGenTarget": "ES5",
+                "lint": {
+                    "curlyBracketsMustNotBeOmitted": "ignore",
+                    "emptyBlocksWithoutComment": "ignore",
+                    "comparisonOperatorsNotStrict": "warning",
+                    "missingSemicolon": "warning",
+                    "reservedKeywords": "warning",
+                    "typeScriptSpecifics": "warning",
+                    "unknownTypeOfResults": "warning",
+                    "semicolonsInsteadOfBlocks": "warning",
+                    "functionsInsideLoops": "warning",
+                    "tripleSlashReferenceAlike": "warning",
+                    "unusedVariables": "warning",
+                    "unusedFunctions": "warning",
+                    "newOnLowercaseFunctions": "warning",
+                    "newOnReturningFunctions": "warning",
+                    "redeclaredVariables": "warning",
+                    "undeclaredVariables": "error",
+                    "unknownProperty": "ignore",
+                    "primitivesInInstanceOf": "error",
+                    "mixedTypesArithmetics": "warning",
+                    "forcedTypeConversion": "warning"
+                }
+            }
+        },
+        "vs.languages.json": {
+            "schemas": []
+        },
+        "vs.languages.typescript": {
+            "suggestSettings": {
+                "alwaysAllWords": false,
+                "useCodeSnippetsOnMethodSuggest": false
+            },
+            "allowMultipleWorkers": false,
+            "validationSettings": {
+                "codeGenTarget": "ES5",
+                "lint": {
+                    "emptyBlocksWithoutComment": "ignore",
+                    "curlyBracketsMustNotBeOmitted": "ignore",
+                    "comparisonOperatorsNotStrict": "warning",
+                    "missingSemicolon": "warning",
+                    "unknownTypeOfResults": "warning",
+                    "semicolonsInsteadOfBlocks": "warning",
+                    "functionsInsideLoops": "warning",
+                    "functionsWithoutReturnType": "warning",
+                    "tripleSlashReferenceAlike": "warning",
+                    "unusedImports": "warning",
+                    "unusedVariables": "warning",
+                    "unusedFunctions": "warning",
+                    "unusedMembers": "warning"
+                }
+            }
+        }
+    },
+    "search": {
+        "excludeFolders": [
+            ".git",
+            "node_modules"
+        ]
+    },
+    "run": {
+        "suffix": ""
+    },
+    "theme": "vs"
+}
