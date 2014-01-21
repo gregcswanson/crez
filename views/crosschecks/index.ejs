@@ -8,10 +8,24 @@
         <link rel="stylesheet" href="/stylesheets/vendor/bootstrap/css/bootstrap.min.css" />
     </head>
     <body>
-        <div class="container">
-          <div class="row">
-            <h1>Cross Checks</h1>
-          </div>
-        </div>
+        <script type="text/x-handlebars">
+            <h2>Cross Checks</h2>
+        
+            {{outlet}}
+          </script>
+          
+          <script type="text/x-handlebars" id="index">
+            <ul>
+            {{#each item in model}}
+              <li>{{item}}</li>
+            {{/each}}
+            </ul>
+          </script>
+        
     </body>
+    
+    <script src="/javascripts/vendor/ember/jquery-1.10.2.js"></script>
+    <script src="/javascripts/vendor/ember/handlebars-1.1.2.js"></script>
+    <script src="/javascripts/vendor/ember/ember-1.2.0.js"></script>
+    <script src="/javascripts/crosschecks-app.js"></script>
 </html>

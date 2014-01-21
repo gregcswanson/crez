@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= page %></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <script src="/javascripts/vendor/jquery/jquery.js"></script>
+        <script src="/javascripts/vendor/bootstrap/js/bootstrap.min.js"></script>
+      <style>
+        
+      </style>
+        <link rel="stylesheet" href="/stylesheets/vendor/bootstrap/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <div class="container">
+          <div class="row">
+            <p>&nbsp;</p>
+          </div>
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="panel panel-primary">
+                    <div class="panel-heading">Upload Blob</div>
+                    <div class="panel-body">
+                        <form action="/blobs/add" method="post" enctype="multipart/form-data" >
+                            
+                      <div class="row">
+                        <div class="col-md-10">
+                          <input type="file" class="form-control" id="fileName" name="fileName" placeholder="Upload File" />
+                        </div>
+                        <div class="col-md-2">
+                          <input type="submit" class="btn btn-success btn-sm btn-block" value="Upload" />
+                        </div>
+                      </div>
+                        </form>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-md-12">
+                        <% for(var i=0; i < data.length; i++) {%>   
+                             <blockquote ng-repeat="message in messages">
+                                <p><%= data[i].name %></p>
+                                <small><%= data[i].url %></small>
+                                <img src="<%= data[i].url %>" height="200" />
+                              </blockquote>
+                        <% } %>
+                    </div>
+                  </div>                  
+                </div>
+            </div>
+                  
+          
+        </div>
+    </body>
+</html>
