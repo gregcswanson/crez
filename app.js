@@ -115,6 +115,7 @@ app.post('/blobs/add', blobs.blobPost);
 
 app.get('/bigboatproject', bigboatproject.index);
 app.get('/bigboatproject/pivot', bigboatproject.pivot);
+app.get('/bigboatproject/data', bigboatproject.pivotData);
 
 app.get('/shopping', ensureAuthenticated, shoppingRoutes.need);
 app.get('/shopping/add', ensureAuthenticated, shoppingRoutes.add);

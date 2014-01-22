@@ -34,20 +34,26 @@ exports.index = function (req, res) {
 };
 
 exports.blobPost = function(req, res ) {
-    
+    // req.files.fileName.type image/png
     // save the file
-    console.log(req.files.fileName.path);
+    
+    var options = {
+			contentType: req.files.fileName.type,
+			metadata: { fileName: req.files.fileName.name }
+		};
     
     blobService.createBlockBlobFromFile(
         "sample-blobs"
         , req.files.fileName.name
         , req.files.fileName.path
+        , options
         , function(error){
-        if(!error){
-            // File has been uploaded
-            console.log(req.files.fileName.name + ' uploaded!');
-        }
+            if(!error){
+                // File has been uploaded
+                console.log(req.files.fileName.name + ' uploaded!');
+                res.redirect("/blobs");
+            }
     });
     
-    res.redirect("/blobs");
+    
 };

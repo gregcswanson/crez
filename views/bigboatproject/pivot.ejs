@@ -7,4 +7,24 @@
     with a filter text box for finding items
   </p>
 </div>
- 
+ <div class="container" ng-controller="PivotController">
+ <div class="row">
+    <div class="col-md-12">
+      <select ng-model="pivotOption" ng-options="c.name for c in pivotOptions"></select>
+    </div>
+ </div>
+  <div class="row">
+    <div class="col-md-6">
+      <blockquote ng-repeat="pivotValue in pivotValues">
+                        <p>{{pivotValue.name}}</p>
+                      </blockquote>
+      
+    </div>
+                    <div class="col-md-6">
+                      <blockquote ng-repeat="message in data">
+                        <p>{{message.name}}</p>
+                        <small>{{message.category}} <cite title="Source Title">{{message.year}}</cite></small>
+                      </blockquote>
+                    </div>
+                  </div> 
+ </div>
