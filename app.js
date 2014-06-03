@@ -31,10 +31,12 @@ var express = require('express')
   , bigboatproject = require('./routes/bigboatproject')
   , shoppingRoutes = require('./routes/shopping')
   , crosschecks = require('./routes/crosschecks')
+  , notesmash = require('./routes/notesmash')
   , api = require('./routes/api')
   , http = require('http')
   , path = require('path')
   , fs = require('fs')
+  , expressJwt = require('express-jwt')
   , repositoryProfile = require('./repository/profile')
   , passport = require('passport')
   , GoogleStrategy = require('passport-google').Strategy;
@@ -91,10 +93,55 @@ app.configure(function () {
     app.use(app.router);
     app.use(require('less-middleware')({ src: __dirname + '/public' }));
     app.use(express.static(path.join(__dirname, 'public')));
+    // We are going to protect /jwt/api routes with JWT
+    //app.use('/jwt/api', expressJwt({secret: "crez-gcs-dev"}));
+    app.use(express.json());
+    app.use(express.urlencoded());
 });
 
 app.configure('development', function () {
     app.use(express.errorHandler());
+});
+
+// jwt testing
+app.get('/refreshtoken',
+  function(req, res) {
+    var profile = {
+      username: req.user.username,
+      email: 'john@doe.com',
+      id: 123
+    };
+
+    // We are sending the profile inside the token
+    var jwt = require('jsonwebtoken');
+    var token = jwt.sign(profile, "crez-gcs-dev", { expiresInMinutes: 60*5 });
+
+    var minute = 60 * 1000;
+    res.cookie('jwttoken', token, { maxAge: minute });
+
+    res.json({ token: token });
+    //res.redirect('/login');
+  });
+
+app.get('/jwt/api/restricted', function (req, res) {
+  var token = req.cookies.jwttoken;
+  var jwt = require('jsonwebtoken');
+  console.log(token);
+  jwt.verify(token, "crez-gcs-dev", function(err, decoded) {
+    console.log(decoded);
+    if(err) {
+      res.json({
+        error: err
+      });
+    }else {
+      console.log(decoded);
+      res.json({
+      token: token//,
+      //id: decoded.id,
+      //email: decoded.email
+    });
+    }
+  });
 });
 
 app.get('/', ensureAuthenticated, routes.index);
@@ -104,6 +151,8 @@ app.post('/user', ensureAuthenticated, routes.userPost);
 app.get('/about', ensureAuthenticated, routes.about);
 
 app.get('/crosschecks', crosschecks.index);
+
+app.get('/notesmash', notesmash.index);
 
 app.get('/messages', ensureAuthenticated, messages.index);
 app.get('/api/messages', ensureAuthenticated, messages.messages);

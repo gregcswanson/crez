@@ -47,7 +47,6 @@ exports.FindForUserByID = function (id, callback) {
                 id: id
                 , name: message.name
                 , text: message.text
-                ,
                 , created: message.created
             };
             callback(null, item);

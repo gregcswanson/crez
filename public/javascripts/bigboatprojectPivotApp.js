@@ -29,7 +29,7 @@ function PivotController($scope, $http) {
             this.push(newValue);
           }
         }, $scope.pivotValues);
-        _.sortBy($scope.pivotValues, "name");
+        $scope.pivotValues = _.sortBy($scope.pivotValues, "name");
   };
   
   $scope.$watch('pivotOption', function () {
