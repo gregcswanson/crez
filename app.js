@@ -169,8 +169,8 @@ app.get('/bigboatproject/data', bigboatproject.pivotData);
 app.get('/shopping', ensureAuthenticated, shoppingRoutes.need);
 app.get('/shopping/add', ensureAuthenticated, shoppingRoutes.add);
 
-app.get('/login', routes.login);
-app.get('/login/alt', routes.loginAlt);
+//app.get('/login', routes.login);
+app.get('/login', routes.loginAlt);
 app.get('/logout', routes.logout);
 app.get('/styleguide', routes.styleguide);
 
